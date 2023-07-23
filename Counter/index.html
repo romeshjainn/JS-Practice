@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body{
+            background-color: red;
+        }
+        #InputHere{
+            display: block;
+            font-size: 5rem;
+            text-align: center;
+            color: white;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+        }
+        .box button{
+            cursor: pointer;
+            margin: 10px ;
+            height: 2rem;
+            border: 3px solid;
+            background-color: antiquewhite;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <label id="InputHere">0</label>
+    <div class="box">
+        <button id="minus">Decrement</button>
+        <button id="reset">Reset</button>
+        <button id="plus">Increment</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

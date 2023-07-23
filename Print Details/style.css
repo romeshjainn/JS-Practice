@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.box{
+    min-width: 50vw;
+    min-height: 70vh;
+    border: 2px solid;
+}
+h4{
+    border: 2px solid;
+    display: block;
+}
+.blank{
+    width: 250px;
+    height: 15px;
+    padding: 10px;
+    margin: 10px;    
+}
+button{
+    padding: 2px;
+    cursor: pointer;
+}
+p{
+    border: 1px solid;
+    padding: 4px;
+}
