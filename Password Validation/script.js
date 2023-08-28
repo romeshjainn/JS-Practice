@@ -10,8 +10,6 @@ let submit = document.getElementById("submit");
 let okbox = document.getElementById("okbox");
 let ok = document.getElementById("ok");
 
-
-
 let firstNameError = document.getElementById("firstNameError");
 let middleNameError = document.getElementById("middleNameError");
 let lastNameError = document.getElementById("lastNameError");
@@ -21,11 +19,9 @@ let githubError = document.getElementById("githubError");
 let linkedinError = document.getElementById("linkedinError");
 let confirmPasswordError = document.getElementById("confirmPasswordError");
 
-
 const passwordPattern = /^(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/;
 const githubPattern = /github\.com\/([A-Za-z_-]+\/)?[A-Za-z0-9_-]+$/;
 const linkedinPattern = /linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/;
-
 
 firstName.oninput = () => {
   const inputValue = firstName.value;
@@ -93,8 +89,8 @@ lastName.oninput = () => {
   }
 };
 ok.onclick = () => {
-    window.location.reload();
-}
+  window.location.reload();
+};
 submit.onclick = () => {
   // Email validation
   if (
@@ -195,6 +191,14 @@ submit.onclick = () => {
     middleNameError.style.display === "none" &&
     lastNameError.style.display === "none"
   ) {
-      okbox.style.display = "block";
+    okbox.style.display = "block";
+    localStorage.setItem(firstName.value);
+    localStorage.setItem(middleName.value);
+    localStorage.setItem(lastName.value);
+    localStorage.setItem(email.value);
+    localStorage.setItem(password.value);
+    localStorage.setItem(confirmPassword.value);
+    localStorage.setItem(githubLink.value);
+    localStorage.setItem(linkedinLink.value);
   }
 };
