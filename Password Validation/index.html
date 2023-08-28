@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>My Website</title>
-</head>
-<body>
-  <div class="container">
-    <input id="firstName" placeholder="Enter your first name" type="text" />
-    <p class="error" id="firstNameError">Error! You can only submit characters</p>
-    
-    <input id="middleName" placeholder="Enter your middle name" type="text" />
-    <p class="error" id="middleNameError">Error! You can only submit characters</p>
-    
-    <input id="lastName" placeholder="Enter your last name" type="text" />
-    <p class="error" id="lastNameError">Error! You can only submit characters</p>
-    
-    <input id="email" placeholder="Enter your email" type="email" />
-    <p class="error" id="emailError">Error! Email not valid</p>
-    
-    <input id="password" placeholder="Enter your password" type="password" />
-    <p class="error" id="passwordError">Error! Password not valid</p>
-    
-    <input id="confirmPassword" placeholder="Confirm your password" type="password" />
-    <p class="error" id="confirmPasswordError">Error! Password is not the same</p>
-    
-    <input id="dob" placeholder="Enter your DOB" type="date" />
-    
-    <input id="githubLink" placeholder="Enter your GitHub profile link" type="url" />
-    <p class="error" id="githubError">Error! Invalid GitHub URL format</p>
-    
-    <input id="linkedinLink" placeholder="Enter your LinkedIn profile link" type="url" />
-    <p class="error" id="linkedinError">Error! Invalid LinkedIn URL format</p>
-    
-    <button id="submit">Submit</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Validation</title>
+  </head>
+  <body>
+    <div class="container">
+      <input id="firstName" placeholder="Enter your first name" type="text" />
+      <p class="error" id="firstNameError">
+        Error! You can only submit characters
+      </p>
 
+      <input id="middleName" placeholder="Enter your middle name" type="text" />
+      <p class="error" id="middleNameError">
+        Error! You can only submit characters
+      </p>
 
-  <div id="okbox">
-    <div class="imgBox">
-      <img src="https://previews.123rf.com/images/narinphoto/narinphoto1611/narinphoto161100165/66109943-illustration-of-submitted-written-on-green-rubber-stamp.jpg" alt="">
+      <input id="lastName" placeholder="Enter your last name" type="text" />
+      <p class="error" id="lastNameError">
+        Error! You can only submit characters
+      </p>
+
+      <input id="email" placeholder="Enter your email" type="email" />
+      <p class="error" id="emailError">Error! Email not valid</p>
+
+      <input id="password" placeholder="Enter your password" type="password" />
+      <p class="error" id="passwordError">Error! Password not valid</p>
+
+      <input
+        id="confirmPassword"
+        placeholder="Confirm your password"
+        type="password"
+      />
+      <p class="error" id="confirmPasswordError">
+        Error! Password is not the same
+      </p>
+
+      <input id="dob" placeholder="Enter your DOB" type="date" />
+
+      <input
+        id="githubLink"
+        placeholder="Enter your GitHub profile link"
+        type="url"
+      />
+      <p class="error" id="githubError">Error! Invalid GitHub URL format</p>
+
+      <input
+        id="linkedinLink"
+        placeholder="Enter your LinkedIn profile link"
+        type="url"
+      />
+      <p class="error" id="linkedinError">Error! Invalid LinkedIn URL format</p>
+
+      <button id="submit">Submit</button>
     </div>
-    
-    <button id="ok">Ok</button>
-  </div>
-  <script src="script.js"></script>
-</body>
+
+    <div id="okbox">
+      <div class="imgBox">
+        <img
+          src="https://previews.123rf.com/images/narinphoto/narinphoto1611/narinphoto161100165/66109943-illustration-of-submitted-written-on-green-rubber-stamp.jpg"
+          alt=""
+        />
+      </div>
+
+      <button id="ok">Ok</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
