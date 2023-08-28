@@ -1,4 +1,3 @@
-// Getting Elements
 let firstName = document.getElementById("firstName");
 let middleName = document.getElementById("middleName");
 let lastName = document.getElementById("lastName");
@@ -8,8 +7,11 @@ let confirmPassword = document.getElementById("confirmPassword");
 let githubLink = document.getElementById("githubLink");
 let linkedinLink = document.getElementById("linkedinLink");
 let submit = document.getElementById("submit");
+let okbox = document.getElementById("okbox");
+let ok = document.getElementById("ok");
 
-// Error elements
+
+
 let firstNameError = document.getElementById("firstNameError");
 let middleNameError = document.getElementById("middleNameError");
 let lastNameError = document.getElementById("lastNameError");
@@ -19,12 +21,12 @@ let githubError = document.getElementById("githubError");
 let linkedinError = document.getElementById("linkedinError");
 let confirmPasswordError = document.getElementById("confirmPasswordError");
 
-// Regular expression patterns
-const passwordPattern = /^(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/;
-const githubPattern = /github\.com\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+/;
-const linkedinPattern = /linkedin\.com\/in\/[A-Za-z0-9_-]+/;
 
-// First Name validation
+const passwordPattern = /^(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/;
+const githubPattern = /github\.com\/([A-Za-z_-]+\/)?[A-Za-z0-9_-]+$/;
+const linkedinPattern = /linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/;
+
+
 firstName.oninput = () => {
   const inputValue = firstName.value;
 
@@ -38,14 +40,15 @@ firstName.oninput = () => {
     ) {
       firstNameError.innerText = "Invalid characters";
       firstNameError.style.display = "block";
+      firstName.style.padding = ".3rem";
       break;
     } else {
       firstNameError.style.display = "none";
+      firstName.style.padding = ".5rem";
     }
   }
 };
 
-// Middle Name validation
 middleName.oninput = () => {
   const inputValue = middleName.value;
 
@@ -59,14 +62,15 @@ middleName.oninput = () => {
     ) {
       middleNameError.innerText = "Invalid characters";
       middleNameError.style.display = "block";
+      middleName.style.padding = ".3rem";
       break;
     } else {
       middleNameError.style.display = "none";
+      middleName.style.padding = ".5rem";
     }
   }
 };
 
-// Last Name validation
 lastName.oninput = () => {
   const inputValue = lastName.value;
 
@@ -80,14 +84,17 @@ lastName.oninput = () => {
     ) {
       lastNameError.innerText = "Invalid characters";
       lastNameError.style.display = "block";
+      lastName.style.padding = ".3rem";
       break;
     } else {
       lastNameError.style.display = "none";
+      lastName.style.padding = ".5rem";
     }
   }
 };
-
-// Form submission validation
+ok.onclick = () => {
+    window.location.reload();
+}
 submit.onclick = () => {
   // Email validation
   if (
@@ -101,8 +108,10 @@ submit.onclick = () => {
   ) {
     emailError.innerText = "Invalid email format";
     emailError.style.display = "block";
+    email.style.padding = ".3rem";
   } else {
     emailError.style.display = "none";
+    email.style.padding = ".5rem";
   }
 
   // Password validation
@@ -110,55 +119,82 @@ submit.onclick = () => {
     passwordError.innerText =
       "Password must contain at least 8 characters with a number and a special character";
     passwordError.style.display = "block";
+    password.style.padding = ".3rem";
   } else {
     passwordError.style.display = "none";
+    password.style.padding = ".5rem";
   }
 
   // Confirm Password validation
   if (password.value !== confirmPassword.value) {
     confirmPasswordError.innerText = "Passwords do not match";
     confirmPasswordError.style.display = "block";
+    confirmPassword.style.padding = ".3rem";
   } else {
     confirmPasswordError.style.display = "none";
+    confirmPassword.style.padding = ".5rem";
   }
 
   // GitHub URL validation
   if (!githubPattern.test(githubLink.value)) {
     githubError.innerText = "Invalid GitHub URL format";
     githubError.style.display = "block";
+    githubLink.style.padding = ".3rem";
   } else {
     githubError.style.display = "none";
+    githubLink.style.padding = ".5rem";
   }
 
   // LinkedIn URL validation
   if (!linkedinPattern.test(linkedinLink.value)) {
     linkedinError.innerText = "Invalid LinkedIn URL format";
     linkedinError.style.display = "block";
+    linkedinLink.style.padding = ".3rem";
   } else {
     linkedinError.style.display = "none";
+    linkedinLink.style.padding = ".5rem";
   }
 
   // First Name validation
   if (firstName.value.trim() === "") {
     firstNameError.innerText = "First name cannot be empty";
     firstNameError.style.display = "block";
+    firstName.style.padding = ".3rem";
   } else {
     firstNameError.style.display = "none";
+    firstName.style.padding = ".5rem";
   }
 
   // Middle Name validation
   if (middleName.value.trim() === "") {
     middleNameError.innerText = "Middle name cannot be empty";
     middleNameError.style.display = "block";
+    middleName.style.padding = ".3rem";
   } else {
     middleNameError.style.display = "none";
+    middleName.style.padding = ".5rem";
   }
 
   // Last Name validation
   if (lastName.value.trim() === "") {
     lastNameError.innerText = "Last name cannot be empty";
     lastNameError.style.display = "block";
+    lastName.style.padding = ".3rem";
   } else {
     lastNameError.style.display = "none";
+    lastName.style.padding = ".5rem";
+  }
+
+  if (
+    emailError.style.display === "none" &&
+    passwordError.style.display === "none" &&
+    confirmPasswordError.style.display === "none" &&
+    githubError.style.display === "none" &&
+    linkedinError.style.display === "none" &&
+    firstNameError.style.display === "none" &&
+    middleNameError.style.display === "none" &&
+    lastNameError.style.display === "none"
+  ) {
+      okbox.style.display = "block";
   }
 };
