@@ -9,14 +9,19 @@
   <body>
     <div class="container">
       <input id="firstName" placeholder="Enter your first name" type="text" />
+      <p class="error" id="firstNameError">error! you can only submit characters</p>
+      <input id="middleName" placeholder="Enter your middle name" type="text" />
+      <p class="error" id="middleNameError">error! you can only submit characters</p>
       <input id="lastName" placeholder="Enter your last name" type="text" />
+      <p class="error" id="lastNameError">error! you can only submit characters</p>
       <input id="email" placeholder="Enter your email" type="email" />
+      <p class="error" id="emailError">error! email not valid</p>
       <input id="password" placeholder="Enter your password" type="password" />
       <input id="confirmPassword" placeholder="Confirm your password" type="password" />
       <input id="dob" placeholder="Enter your DOB" type="date" />
       <input id="githubLink" placeholder="Enter your github profile link" type="url" />
       <input id="linkedinLink" placeholder="Enter your linkedin profile link" type="url" />
-      <button id="Submit">Submit</button>
+      <button id="submit">Submit</button>
     </div>
 
     <script src="script.js"></script>
