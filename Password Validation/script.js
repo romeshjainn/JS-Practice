@@ -100,6 +100,7 @@ lastName.oninput = () => {
 };
 ok.onclick = () => {
   window.location.reload();
+  5;
 };
 submit.onclick = () => {
   // Email validation
@@ -159,6 +160,8 @@ submit.onclick = () => {
     githubLink.style.padding = ".5rem";
   }
 
+  //DOB
+
   // LinkedIn URL validation
   if (!linkedinPattern.test(linkedinLink.value)) {
     linkedinError.innerText = "Invalid LinkedIn URL format";
@@ -210,13 +213,5 @@ submit.onclick = () => {
     lastNameError.style.display === "none"
   ) {
     okbox.style.display = "block";
-    localStorage.setItem(firstName.value);
-    localStorage.setItem(middleName.value);
-    localStorage.setItem(lastName.value);
-    localStorage.setItem(email.value);
-    localStorage.setItem(password.value);
-    localStorage.setItem(confirmPassword.value);
-    localStorage.setItem(githubLink.value);
-    localStorage.setItem(linkedinLink.value);
   }
 };
