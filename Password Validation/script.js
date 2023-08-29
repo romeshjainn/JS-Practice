@@ -9,7 +9,9 @@ let linkedinLink = document.getElementById("linkedinLink");
 let submit = document.getElementById("submit");
 let okbox = document.getElementById("okbox");
 let ok = document.getElementById("ok");
+const dob = document.getElementById("dob");
 
+const dateError = document.getElementById("dobError");
 let firstNameError = document.getElementById("firstNameError");
 let middleNameError = document.getElementById("middleNameError");
 let lastNameError = document.getElementById("lastNameError");
@@ -147,6 +149,12 @@ submit.onclick = () => {
     confirmPassword.style.padding = ".5rem";
     confirmPassword.style.outline = "none";
   }
+  // DOB
+  // if (!dob.value) {
+  //   dateError.style.display = "block";
+  // } else {
+  //   dateError.style.display = "none";
+  // }
 
   // GitHub URL validation
   if (githubLink.value.trim() !== "" && !githubPattern.test(githubLink.value)) {
@@ -159,8 +167,6 @@ submit.onclick = () => {
     githubError.style.display = "none";
     githubLink.style.padding = ".5rem";
   }
-
-  //DOB
 
   // LinkedIn URL validation
   if (!linkedinPattern.test(linkedinLink.value)) {
@@ -211,6 +217,8 @@ submit.onclick = () => {
     linkedinError.style.display === "none" &&
     firstNameError.style.display === "none" &&
     lastNameError.style.display === "none"
+    // &&
+    // dateError.style.display === "none"
   ) {
     okbox.style.display = "block";
   }
