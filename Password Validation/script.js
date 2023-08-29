@@ -37,10 +37,12 @@ firstName.oninput = () => {
       firstNameError.innerText = "Invalid characters";
       firstNameError.style.display = "block";
       firstName.style.padding = ".3rem";
-      firstName.style.outline = "1px solid red";
+      firstName.style.outline = "2px solid red";
+
       break;
     } else {
       firstName.style.outline = "none";
+      // firstName.style.outline = "2px solid green";
       firstNameError.style.display = "none";
       firstName.style.padding = ".5rem";
     }
@@ -202,7 +204,7 @@ submit.onclick = () => {
     emailError.style.display === "none" &&
     passwordError.style.display === "none" &&
     confirmPasswordError.style.display === "none" &&
-    githubError.style.display === "none" && // Check for GitHub error only if a link is provided
+    githubError.style.display === "none" &&
     linkedinError.style.display === "none" &&
     firstNameError.style.display === "none" &&
     lastNameError.style.display === "none"

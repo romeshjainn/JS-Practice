@@ -21,7 +21,10 @@ body {
 input {
   padding: 0.5rem;
   width: 100%;
-  /* outline: red; */
+}
+input:focus {
+  border: 2px solid green; 
+  outline: none; 
 }
 button{
   padding: .3rem;
