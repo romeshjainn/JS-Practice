@@ -146,7 +146,7 @@ submit.onclick = () => {
   }
 
   // GitHub URL validation
-  if (!githubPattern.test(githubLink.value)) {
+  if (githubLink.value.trim() !== "" && !githubPattern.test(githubLink.value)) {
     githubError.innerText = "Invalid GitHub URL format";
     githubError.style.display = "block";
     githubLink.style.padding = ".3rem";
@@ -182,16 +182,9 @@ submit.onclick = () => {
   }
 
   // Middle Name validation
-  if (middleName.value.trim() === "") {
-    middleNameError.innerText = "Middle name cannot be empty";
-    middleNameError.style.display = "block";
-    middleName.style.padding = ".3rem";
-    middleName.style.outline = "1px solid red";
-  } else {
-    middleName.style.outline = "none";
-    middleNameError.style.display = "none";
-    middleName.style.padding = ".5rem";
-  }
+  middleName.style.outline = "none";
+  middleNameError.style.display = "none";
+  middleName.style.padding = ".5rem";
 
   // Last Name validation
   if (lastName.value.trim() === "") {
@@ -209,10 +202,9 @@ submit.onclick = () => {
     emailError.style.display === "none" &&
     passwordError.style.display === "none" &&
     confirmPasswordError.style.display === "none" &&
-    // githubError.style.display === "none" &&
+    githubError.style.display === "none" && // Check for GitHub error only if a link is provided
     linkedinError.style.display === "none" &&
     firstNameError.style.display === "none" &&
-    // middleNameError.style.display === "none" &&
     lastNameError.style.display === "none"
   ) {
     okbox.style.display = "block";
