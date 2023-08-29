@@ -185,10 +185,10 @@ submit.onclick = () => {
     emailError.style.display === "none" &&
     passwordError.style.display === "none" &&
     confirmPasswordError.style.display === "none" &&
-    githubError.style.display === "none" &&
+    // githubError.style.display === "none" &&
     linkedinError.style.display === "none" &&
     firstNameError.style.display === "none" &&
-    middleNameError.style.display === "none" &&
+    // middleNameError.style.display === "none" &&
     lastNameError.style.display === "none"
   ) {
     okbox.style.display = "block";
