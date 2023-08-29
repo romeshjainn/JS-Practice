@@ -21,6 +21,7 @@ body {
 input {
   padding: 0.5rem;
   width: 100%;
+  /* outline: red; */
 }
 button{
   padding: .3rem;

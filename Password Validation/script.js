@@ -37,8 +37,10 @@ firstName.oninput = () => {
       firstNameError.innerText = "Invalid characters";
       firstNameError.style.display = "block";
       firstName.style.padding = ".3rem";
+      firstName.style.outline = "1px solid red";
       break;
     } else {
+      firstName.style.outline = "none";
       firstNameError.style.display = "none";
       firstName.style.padding = ".5rem";
     }
@@ -59,8 +61,11 @@ middleName.oninput = () => {
       middleNameError.innerText = "Invalid characters";
       middleNameError.style.display = "block";
       middleName.style.padding = ".3rem";
+      middleName.style.outline = "1px solid red";
+
       break;
     } else {
+      middleName.style.outline = "none";
       middleNameError.style.display = "none";
       middleName.style.padding = ".5rem";
     }
@@ -81,8 +86,11 @@ lastName.oninput = () => {
       lastNameError.innerText = "Invalid characters";
       lastNameError.style.display = "block";
       lastName.style.padding = ".3rem";
+      lastName.style.outline = "1px solid red";
+
       break;
     } else {
+      lastName.style.outline = "none";
       lastNameError.style.display = "none";
       lastName.style.padding = ".5rem";
     }
@@ -102,12 +110,14 @@ submit.onclick = () => {
       email.value.includes("@mail.com")
     )
   ) {
+    email.style.outline = "1px solid red";
     emailError.innerText = "Invalid email format";
     emailError.style.display = "block";
     email.style.padding = ".3rem";
   } else {
     emailError.style.display = "none";
     email.style.padding = ".5rem";
+    email.style.outline = "none";
   }
 
   // Password validation
@@ -116,7 +126,9 @@ submit.onclick = () => {
       "Password must contain at least 8 characters with a number and a special character";
     passwordError.style.display = "block";
     password.style.padding = ".3rem";
+    password.style.outline = "1px solid red";
   } else {
+    password.style.outline = "none";
     passwordError.style.display = "none";
     password.style.padding = ".5rem";
   }
@@ -126,9 +138,11 @@ submit.onclick = () => {
     confirmPasswordError.innerText = "Passwords do not match";
     confirmPasswordError.style.display = "block";
     confirmPassword.style.padding = ".3rem";
+    confirmPassword.style.outline = "1px solid red";
   } else {
     confirmPasswordError.style.display = "none";
     confirmPassword.style.padding = ".5rem";
+    confirmPassword.style.outline = "none";
   }
 
   // GitHub URL validation
@@ -136,7 +150,9 @@ submit.onclick = () => {
     githubError.innerText = "Invalid GitHub URL format";
     githubError.style.display = "block";
     githubLink.style.padding = ".3rem";
+    githubLink.style.outline = "1px solid red";
   } else {
+    githubLink.style.outline = "none";
     githubError.style.display = "none";
     githubLink.style.padding = ".5rem";
   }
@@ -146,7 +162,9 @@ submit.onclick = () => {
     linkedinError.innerText = "Invalid LinkedIn URL format";
     linkedinError.style.display = "block";
     linkedinLink.style.padding = ".3rem";
+    linkedinLink.style.outline = "1px solid red";
   } else {
+    linkedinLink.style.outline = "none";
     linkedinError.style.display = "none";
     linkedinLink.style.padding = ".5rem";
   }
@@ -156,7 +174,9 @@ submit.onclick = () => {
     firstNameError.innerText = "First name cannot be empty";
     firstNameError.style.display = "block";
     firstName.style.padding = ".3rem";
+    firstName.style.outline = "1px solid red";
   } else {
+    firstName.style.outline = "none";
     firstNameError.style.display = "none";
     firstName.style.padding = ".5rem";
   }
@@ -166,7 +186,9 @@ submit.onclick = () => {
     middleNameError.innerText = "Middle name cannot be empty";
     middleNameError.style.display = "block";
     middleName.style.padding = ".3rem";
+    middleName.style.outline = "1px solid red";
   } else {
+    middleName.style.outline = "none";
     middleNameError.style.display = "none";
     middleName.style.padding = ".5rem";
   }
@@ -176,7 +198,9 @@ submit.onclick = () => {
     lastNameError.innerText = "Last name cannot be empty";
     lastNameError.style.display = "block";
     lastName.style.padding = ".3rem";
+    lastName.style.outline = "1px solid red";
   } else {
+    lastName.style.outline = "none";
     lastNameError.style.display = "none";
     lastName.style.padding = ".5rem";
   }
