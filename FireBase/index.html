@@ -34,6 +34,7 @@
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
         signOut,
+        updateProfile,
       } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
       // Your web app's Firebase configuration
@@ -61,10 +62,14 @@
         try {
           const userCredential = await createUserWithEmailAndPassword(
             auth,
+            username,
             email,
             password
           );
           const user = userCredential.user;
+
+          // Set the username in the user object's displayName
+          await updateProfile(user, { displayName: username });
 
           // Check if username and email are defined before setting them in the database
           if (username && email) {
