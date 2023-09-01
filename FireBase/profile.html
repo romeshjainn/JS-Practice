@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Profile Page</title>
 </head>
 <body>
-    <h1>User Profile</h1>
-    <div>
-        <strong>Email:</strong> <span id="user-email"></span>
+    <h1>Welcome to Your Profile Page</h1>
+    <div id="user-info">
+        <p>Email: <span id="user-email"></span></p>
+        <p>Username: <span id="user-username"></span></p>
     </div>
-    <div>
-        <strong>Username:</strong> <span id="user-username"></span>
-    </div>
+
+    <script>
+        // Retrieve query parameters
+        const queryParams = new URLSearchParams(window.location.search);
+        const userEmail = queryParams.get("email");
+        const username = queryParams.get("username");
+
+        // Display user data on the page
+        document.getElementById("user-email").textContent = userEmail;
+        document.getElementById("user-username").textContent = username;
+    </script>
 </body>
 </html>
