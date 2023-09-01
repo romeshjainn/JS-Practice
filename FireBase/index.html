@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,13 +10,50 @@
   </head>
   <body>
     <div>
-      <input type="text" id="username" name="username" placeholder="username" />
-      <input type="text" id="email" name="email" placeholder="email" />
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="First Name"
+      />
+      <input
+        type="text"
+        id="middleName"
+        name="middleName"
+        placeholder="Middle Name"
+      />
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        placeholder="Last Name"
+      />
+      <input
+        type="text"
+        id="github"
+        name="github"
+        placeholder="GitHub Profile"
+      />
+      <input
+        type="text"
+        id="profileLink"
+        name="profileLink"
+        placeholder="Profile Link"
+      />
+      <input
+        type="text"
+        id="linkedin"
+        name="linkedin"
+        placeholder="LinkedIn Profile"
+      />
+      <input type="date" id="dob" name="dob" placeholder="Date of Birth" />
+      <input type="text" id="username" name="username" placeholder="Username" />
+      <input type="text" id="email" name="email" placeholder="Email" />
       <input
         type="password"
         id="password"
         name="password"
-        placeholder="password"
+        placeholder="Password"
       />
       <input type="submit" id="signUp" name="signup-submit" value="Sign Up" />
       <input type="submit" id="login" name="login" value="Login" />
@@ -56,26 +95,42 @@
 
       document.getElementById("signUp").addEventListener("click", async (e) => {
         let email = document.getElementById("email").value;
-        let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
+        let username = document.getElementById("username").value;
+        let firstName = document.getElementById("firstName").value;
+        let middleName = document.getElementById("middleName").value;
+        let lastName = document.getElementById("lastName").value;
+        let github = document.getElementById("github").value;
+        let profileLink = document.getElementById("profileLink").value;
+        let linkedin = document.getElementById("linkedin").value;
+        let dob = document.getElementById("dob").value;
 
         try {
           const userCredential = await createUserWithEmailAndPassword(
             auth,
-            username,
             email,
             password
           );
           const user = userCredential.user;
 
-          // Set the username in the user object's displayName
-          await updateProfile(user, { displayName: username });
+          // Set additional user profile data
+          await updateProfile(user, {
+            displayName: username,
+            photoURL: profileLink, // You can use this for the profile link
+          });
 
-          // Check if username and email are defined before setting them in the database
+          // Check if all fields are defined before setting them in the database
           if (username && email) {
             await set(ref(database, "users/" + user.uid), {
               username: username,
               email: email,
+              firstName: firstName,
+              middleName: middleName,
+              lastName: lastName,
+              github: github,
+              profileLink: profileLink,
+              linkedin: linkedin,
+              dob: dob,
             });
           }
 
