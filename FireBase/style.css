@@ -8,11 +8,12 @@ div{
     flex-direction: column;
     gap: 1rem;
 }
-input, button{
+input, #signUp{
     border: 2px solid;
     padding: .5rem;
 }
-button{
+#signUp{
     background-color: rgb(156, 133, 133);
     cursor: pointer;
 }
+
