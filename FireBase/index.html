@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,12 +31,6 @@
         id="github"
         name="github"
         placeholder="GitHub Profile"
-      />
-      <input
-        type="text"
-        id="profileLink"
-        name="profileLink"
-        placeholder="Profile Link"
       />
       <input
         type="text"
@@ -101,7 +93,6 @@
         let middleName = document.getElementById("middleName").value;
         let lastName = document.getElementById("lastName").value;
         let github = document.getElementById("github").value;
-        let profileLink = document.getElementById("profileLink").value;
         let linkedin = document.getElementById("linkedin").value;
         let dob = document.getElementById("dob").value;
 
@@ -116,7 +107,6 @@
           // Set additional user profile data
           await updateProfile(user, {
             displayName: username,
-            photoURL: profileLink, // You can use this for the profile link
           });
 
           // Check if all fields are defined before setting them in the database
@@ -128,7 +118,6 @@
               middleName: middleName,
               lastName: lastName,
               github: github,
-              profileLink: profileLink,
               linkedin: linkedin,
               dob: dob,
             });

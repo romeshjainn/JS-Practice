@@ -6,7 +6,7 @@ body{
 div{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    /* gap: 1rem; */
 }
 input, #signUp{
     border: 2px solid;
