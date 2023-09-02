@@ -8,6 +8,8 @@ console.log(submitButton)
 const emailinput = document.getElementById("email");
 const passwordinput = document.getElementById("password");
 const passwordconfirm = document.getElementById("confirm-password");
+const DOB = document.getElementById("DOB");
+const dobError = document.getElementById("dobError");
 
 
 submitButton.addEventListener("click", function (e) {
@@ -64,7 +66,7 @@ function checksInputs() {
     // ValidPassword.style.color = "green";
     // ValidPassword.style.border = "1px green";
   }
-  if (!ValidPassword.test(passwordconfirm.value)) {
+  if (!(passwordinput == passwordconfirm)) {
     passwordconfirm.value = "invalid";
     // ValidPassword.style.color = "red";
     // ValidPassword.style.border = "1px red";
@@ -88,5 +90,12 @@ function checksInputs() {
   } else {
     // ValidURL.style.color = "green";
     // ValidURL.style.border = "1px green";
-  }
+    }
+
+    // dob logic here 
+    if (!DOB.value) {
+        dobError.style.display = "block";
+    }
+    
+    
 }
