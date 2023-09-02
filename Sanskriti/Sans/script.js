@@ -4,13 +4,12 @@ const lastnameinput = document.getElementById("lastname");
 const githubinput = document.getElementById("git");
 const linkedlninput = document.getElementById("Linkedln");
 const submitButton = document.getElementById("submit-btn");
-console.log(submitButton)
+// console.log(submitButton);
 const emailinput = document.getElementById("email");
 const passwordinput = document.getElementById("password");
 const passwordconfirm = document.getElementById("confirm-password");
 const DOB = document.getElementById("DOB");
 const dobError = document.getElementById("dobError");
-
 
 submitButton.addEventListener("click", function (e) {
   e.preventDefault();
@@ -25,8 +24,8 @@ function checksInputs() {
 
   if (!ValidCharacter.test(middlenameinput.value)) {
     middlenameinput.value = "invalid";
+    middlenameinput.style.border = "1px solid red";
     // middlenameinput.style.color = "red";
-    // middlenameinput.style.border = "1px solid red";
   } else {
     // middlenameinput.style.border = "1px solid green";
     // middlenameinput.style.color = "green";
@@ -34,14 +33,16 @@ function checksInputs() {
 
   if (!ValidCharacter.test(firstnameinput.value)) {
     firstnameinput.value = "invalid";
+    firstnameinput.style.border = "1px solid red";
     // firstnameinput.style.color = "red";
-    // firstnameinput.style.border = "1px red";
   } else {
     // firstnameinput.style.border = "1px solid green";
     // firstnameinput.style.color = "green";
   }
   if (!ValidCharacter.test(lastnameinput.value)) {
     lastnameinput.value = "invalid";
+    lastnameinput.style.border = "1px solid red";
+
     // lastnameinput.style.color = "red";
     // lastnameinput.style.border = "1px red";
   } else {
@@ -50,7 +51,9 @@ function checksInputs() {
   }
 
   if (!ValidEmail.test(emailinput.value)) {
-    emailinput.value = "invalid";
+      emailinput.value = "invalid";
+    emailinput.style.border = "1px solid red";
+      
     // emailinput.style.color = "red";
     // emailinput.style.border = "1px red";
   } else {
@@ -59,7 +62,9 @@ function checksInputs() {
   }
 
   if (!ValidPassword.test(passwordinput.value)) {
-    passwordinput.value = "invalid";
+      passwordinput.value = "invalid";
+    passwordinput.style.border = "1px solid red";
+      
     // ValidPassword.style.color = "red";
     // ValidPassword.style.border = "1px red";
   } else {
@@ -67,7 +72,9 @@ function checksInputs() {
     // ValidPassword.style.border = "1px green";
   }
   if (!(passwordinput == passwordconfirm)) {
-    passwordconfirm.value = "invalid";
+      passwordconfirm.value = "invalid";
+    passwordconfirm.style.border = "1px solid red";
+      
     // ValidPassword.style.color = "red";
     // ValidPassword.style.border = "1px red";
   } else {
@@ -76,7 +83,9 @@ function checksInputs() {
   }
 
   if (!ValidURL.test(githubinput.value)) {
-    githubinput.value = "invalid";
+      githubinput.value = "invalid";
+    githubinput.style.border = "1px solid red";
+      
     // ValidURL.style.color = "red";
     // ValidURL.style.border = "1px red";
   } else {
@@ -84,18 +93,19 @@ function checksInputs() {
     // ValidURL.style.border = "1px green";
   }
   if (!ValidURL.test(linkedlninput.value)) {
-    linkedlninput.value = "invalid";
+      linkedlninput.value = "invalid";
+    linkedlninput.style.border = "1px solid red";
+      
     // ValidURL.style.color = "red";
     // ValidURL.style.border = "1px red";
   } else {
     // ValidURL.style.color = "green";
     // ValidURL.style.border = "1px green";
-    }
+  }
 
-    // dob logic here 
-    if (!DOB.value) {
-        dobError.style.display = "block";
-    }
-    
-    
+  // dob logic here
+  if (!DOB.value) {
+    //   dobError.style.display = "block";
+      DOB.style.border = "1px solid red"
+  }
 }
