@@ -27,11 +27,11 @@
      margin-top: 100px;
  }
 
- .submit-btn {
+ #submit-btn {
      margin-top: 30px;
  }
 
- .submit-btn input {
+ #submit-btn input {
      color: white;
      border: none;
      font-size: 16px;
