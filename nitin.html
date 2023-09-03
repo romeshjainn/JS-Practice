@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #form{
+            /* padding: 50px; */
+            
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: lightsalmon;
+
+        }
+        small{
+            display: none;
+            color: rgb(241, 27, 27);
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" action="">
+        <label for="fname">First Name   </label>
+        <small id="error2">Error! </small>
+        <input class="inputFirst" type="text" placeholder="First Name">
+        <label for="Mname">Middle Name </label>
+        <input class="inputFirst" type="text" placeholder="Middle Name">
+        <label for="fname">Last name</label>
+        <input class="inputFirst" type="text" placeholder="Last Name">
+         
+        <label for="email">Email </label>
+        <input id="emailInput" type="email" placeholder="Email">
+
+        <label for="password">Password </label>
+        <input id="passwordInput" type="password" placeholder="Password">
+
+        <label for="password">Confirm Password </label>
+        <input type="password" placeholder="Confirm Password">
+
+        <label for="DOB">DOB </label>
+        <input type="datetime-local" placeholder="DOB">
+        <label for="name">Github Profile Link </label>
+        <input type="text" placeholder="Github Profile Link">
+       <label for="name">Linkedin Profile Link </label>
+        <input type="text" placeholder="LinkedIn Profile Link">
+        <button>Submit</button>
+    
+    </form>
+
+    
+</body>
+</html>
+
+
+<script>
+let error2 = document.getElementById("error2");
+    // first mid and last name
+
+    let arr =[];
+    const first = document.getElementsByClassName("inputFirst")
+    console.log(first);
+
+
+   for(let i =0; i<first.length; i++){
+    first[i].addEventListener("input",find)
+    function find(){
+        console.log(first[i].value);
+        const userInput = first[i].value;  // nitin1
+        console.log("userinput",userInput);
+        console.log(typeof userInput);
+        arr = userInput.split("");
+        console.log(arr); // nitin1
+        if(!isNaN(first[0]%2)){
+            error2.style.display = "block";
+        }
+
+        // for(let i =0; i<arr.length; i++){
+            // if(isNaN(arr[i]%2)){
+            //     // alert("not valid")
+
+            // }else{
+            //     // alert("not valid")
+            //     if(arr[0]){
+            //         error2.style.display = "block";
+
+            //     }
+
+            // }
+            
+        // }
+        arr =[] 
+
+    }
+    }
+
+
+
+//     // email
+
+//     const emailInput = document.getElementById("emailInput");
+//     console.log(emailInput);
+
+//     emailInput.addEventListener("input", findEmail)
+    
+//     function findEmail(){
+//         // console.log(emailInput.value);
+//         let userEmail = emailInput.value;
+//         console.log("userEmail",userEmail);
+
+
+//         var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+//   if (emailInput.value.match(validRegex)) {
+
+//     // alert("Valid email address!");
+
+//     // document.form1.text1.focus();
+
+//     // return true;
+
+//   } else {
+
+//     alert("Invalid email address!");
+
+//     // document.form1.text1.focus();
+
+//     // return false;
+
+//   }5
+
+
+//     }
+
+
+
+
+// password
+
+let array =[]
+const password = document.getElementById("passwordInput");
+console.log("hey",password);
+
+password.addEventListener("input", findPassword)
+function findPassword(){
+
+    console.log(password.value);
+    let userPassword = password.value;
+    console.log("userpassword", userPassword);
+
+    array1 = userPassword.split("");
+    console.log(array1);
+    if(array1.length<8){
+
+        alert("Valid email address!");
+
+
+    }else{}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

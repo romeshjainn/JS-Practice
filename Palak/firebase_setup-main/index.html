@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firebase Login Form</title>
+    <link rel="stylesheet" href="./form.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="heading">Register</h1>
+      <form id="signup-form">
+        <input type="text" id="name" placeholder="Enter Your Name" required />
+        <input
+          type="text"
+          id="qualification"
+          placeholder="Enter Your qualification"
+          required
+        />
+        <input
+          type="email"
+          id="signup-email"
+          placeholder="Enter Your Email"
+          required
+        />
+        <input type="date" id="dob" placeholder="Enter Your DOB" required />
+        <input
+          type="password"
+          id="signup-password"
+          placeholder="Enter Password"
+          required
+        />
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirm Password"
+          required
+        />
+        <button type="button" id="signup">Sign Up</button>
+        <button type="button" id="signIn">Sign In</button>
+      </form>
+      <form id="signin-form" style="display: none">
+        <input
+          type="email"
+          id="signin-email"
+          placeholder="Enter your email"
+          required
+        />
+        <input
+          type="password"
+          id="signin-password"
+          placeholder="Enter Password"
+          required
+        />
+        <button type="button" id="signin">Sign In</button>
+      </form>
+      <p id="signin-status" style="color: red"></p>
+      <div id="user-details"></div>
+    </div>
+
+    <script type="module" defer>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        query,
+        where,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+
+      const signupButton = document.getElementById("signup");
+      const signUpForm = document.getElementById("signup-form");
+      const signinForm = document.getElementById("signin-form");
+      const heading = document.getElementById("heading");
+      const signinButton = document.getElementById("signin");
+      const signinStatus = document.getElementById("signin-status");
+      const alreadyRegistered = document.getElementById("signIn");
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCJUXuoMpUMJicrm1f9GwzGumDu1VlQaIg",
+        authDomain: "authentication-app-123.firebaseapp.com",
+        databaseURL:
+          "https://authentication-app-123-default-rtdb.firebaseio.com",
+        projectId: "authentication-app-123",
+        storageBucket: "authentication-app-123.appspot.com",
+        messagingSenderId: "273771978256",
+        appId: "1:273771978256:web:b01b69bfc81d6065733495",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      signupButton.addEventListener("click", async () => {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("signup-email").value;
+        const dob = document.getElementById("dob").value;
+        const qualification = document.getElementById("qualification").value;
+        const password = document.getElementById("signup-password").value;
+
+        try {
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+          }
+
+          // Create a Firestore document with user data
+          const userDocRef = await addDoc(collection(db, "users"), {
+            name: name,
+            email: email,
+            dob: dob,
+            qualification: qualification,
+          });
+
+          // Create the user account using Firebase Auth
+          await createUserWithEmailAndPassword(auth, email, password);
+
+          alert("Registration successful!");
+          signUpForm.style.display = "none";
+          signinForm.style.display = "flex";
+          heading.innerHTML = "Please Sign In here...";
+        } catch (e) {
+          console.error("Error during registration: ", e);
+          alert("Registration failed. Please try again.");
+        }
+      });
+
+      signinButton.addEventListener("click", async () => {
+        const email = document.getElementById("signin-email").value;
+        const password = document.getElementById("signin-password").value;
+
+        try {
+          // Sign in with email and password
+          await signInWithEmailAndPassword(auth, email, password);
+
+          heading.innerHTML =
+            "Sign In successful. Please have your details below...";
+
+          const userEmail = email;
+          const userQuery = query(
+            collection(db, "users"),
+            where("email", "==", userEmail)
+          );
+          const querySnapshot = await getDocs(userQuery);
+
+          if (querySnapshot.docs.length === 1) {
+            const userData = querySnapshot.docs[0].data();
+
+            signinForm.style.display = "none";
+            const userDetailsDiv = document.getElementById("user-details");
+            userDetailsDiv.innerHTML = `
+            <h2>User Details:</h2>
+            <p>Name: ${userData.name}</p>
+            <p>Email: ${userData.email}</p>
+            <p>Date of Birth: ${userData.dob}</p>
+            <p>Qualification: ${userData.qualification}</p>
+          `;
+          }
+        } catch (e) {
+          console.error("Error signing in: ", e);
+
+          signinStatus.innerHTML =
+            "Sign-in failed. Please check your credentials.";
+          signinStatus.style.color = "red";
+        }
+      });
+
+      alreadyRegistered.addEventListener("click", () => {
+        signUpForm.style.display = "none";
+        signinForm.style.display = "flex";
+      });
+    </script>
+  </body>
+</html>
