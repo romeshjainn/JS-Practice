@@ -110,7 +110,7 @@
           });
 
           // Check if all fields are defined before setting them in the database
-          if (username && email) {
+          if (username && email ) {
             await set(ref(database, "users/" + user.uid), {
               username: username,
               email: email,
