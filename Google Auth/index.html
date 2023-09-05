@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    
+    <button id="signUp">Sign Up</button>
+    <button id="signIn">Sign In</button>
+
+    <button id="googleSignIn">Sign In with Google</button>
+
+    <script type="module">
+      // Import Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        GoogleAuthProvider,
+        signInWithPopup,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+
+      // Your Firebase configuration
+      const firebaseConfig = {
+   apiKey: "AIzaSyD-Il6M49EPIOVJCqnmS0-QnSgGfRdXEag",
+    authDomain: "auth-22f20.firebaseapp.com",
+    projectId: "auth-22f20",
+    storageBucket: "auth-22f20.appspot.com",
+    messagingSenderId: "501784522303",
+    appId: "1:501784522303:web:bb6fb9ecf87e98f287528a"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth(app);
+
+      // Sign up event
+      document.getElementById("signUp").addEventListener("click", async () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          await createUserWithEmailAndPassword(auth, email, password);
+          console.log("User registered successfully");
+        } catch (error) {
+          console.error(error);
+        }
+      });
+
+      // Sign in event
+      document.getElementById("signIn").addEventListener("click", async () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          console.log("User signed in successfully");
+        } catch (error) {
+          console.error(error);
+        }
+      });
+
+      // Sign in with Google event
+      document.getElementById("googleSignIn").addEventListener("click", async () => {
+        const provider = new GoogleAuthProvider();
+
+        try {
+          const result = await signInWithPopup(auth, provider);
+          console.log("User signed in with Google successfully", result.user);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>
