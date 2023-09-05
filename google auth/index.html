@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Google Authentication</title>
+  </head>
+  <body>
+
+    <div>
+        <img  src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" alt="">
+        <button id="googleAuthentication">LOGIN WITH GOOGLE</button>
+
+    </div>
+
+    <!-- Add this script to your index.html page -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCABiKZN5HChiMuPFUV1q4UBWm_5Xx1bLk",
+        authDomain: "test-a6e4d.firebaseapp.com",
+        projectId: "test-a6e4d",
+        storageBucket: "test-a6e4d.appspot.com",
+        messagingSenderId: "1089337857322",
+        appId: "1:1089337857322:web:4d8e921e750f32caa17a53",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+
+      document
+        .getElementById("googleAuthentication")
+        .addEventListener("click", async () => {
+          try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // Store user information in localStorage
+            localStorage.setItem("user", JSON.stringify(user));
+
+            // Redirect to the profile page
+            window.location.href = "profile.html";
+          } catch (error) {
+            console.error("Google sign-in error:", error);
+          }
+        });
+    </script>
+  </body>
+</html>
