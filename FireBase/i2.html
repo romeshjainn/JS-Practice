@@ -1,0 +1,164 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Authentication</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div>
+        <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="First Name"
+        />
+        <input
+            type="text"
+            id="middleName"
+            name="middleName"
+            placeholder="Middle Name"
+        />
+        <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+        />
+        <input
+            type="text"
+            id="github"
+            name="github"
+            placeholder="GitHub Profile"
+        />
+        <input
+            type="text"
+            id="linkedin"
+            name="linkedin"
+            placeholder="LinkedIn Profile"
+        />
+        <input type="date" id="dob" name="dob" placeholder="Date of Birth" />
+        <input type="text" id="username" name="username" placeholder="Username" />
+        <input type="text" id="email" name="email" placeholder="Email" />
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+        />
+        <input type="submit" id="signUp" name="signup-submit" value="Sign Up" />
+        <input type="submit" id="login" name="login" value="Login" />
+        <input type="button" id="logout" name="logout" value="Logout" />
+        </div>
+
+        <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import {
+            getDatabase,
+            set,
+            ref,
+        } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            updateProfile,
+        } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCcpcpFvUGLoZI5R3s2kFEQMOwWQUsxoQc",
+            authDomain: "authentication-76738.firebaseapp.com",
+            databaseURL: "https://authentication-76738-default-rtdb.firebaseio.com",
+            projectId: "authentication-76738",
+            storageBucket: "authentication-76738.appspot.com",
+            messagingSenderId: "905237555297",
+            appId: "1:905237555297:web:81f3a5bdc04f12f3e32220",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+
+        document.getElementById("signUp").addEventListener("click", async (e) => {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let username = document.getElementById("username").value;
+            let firstName = document.getElementById("firstName").value;
+            let middleName = document.getElementById("middleName").value;
+            let lastName = document.getElementById("lastName").value;
+            let github = document.getElementById("github").value;
+            let linkedin = document.getElementById("linkedin").value;
+            let dob = document.getElementById("dob").value;
+
+            try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            const user = userCredential.user;
+
+            // Set additional user profile data
+            await updateProfile(user, {
+                displayName: username,
+            });
+
+            // Check if all fields are defined before setting them in the database
+            if (username && email) {
+                await set(ref(database, "users/" + user.uid), {
+                username: username,
+                email: email,
+                firstName: firstName,
+                middleName: middleName,
+                lastName: lastName,
+                github: github,
+                linkedin: linkedin,
+                dob: dob,
+                });
+            }
+
+            alert("User created");
+            } catch (error) {
+            const errorMessage = error.message;
+            alert(errorMessage);
+            }
+        });
+
+        document.getElementById("login").addEventListener("click", async (e) => {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            const user = userCredential.user;
+
+            // Redirect to the profile page and pass user data as query parameters
+            window.location.href = `profile.html?email=${user.email}&username=${user.displayName}`;
+            } catch (error) {
+            const errorMessage = error.message;
+            // alert(errorMessage);
+            }
+        });
+
+        // Logout function
+        document.getElementById("logout").addEventListener("click", async (e) => {
+            try {
+            await signOut(auth);
+            alert("User logged out");
+            } catch (error) {
+            const errorMessage = error.message;
+            alert(errorMessage);
+            }
+        });
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h1>Welcome to Your Profile</h1>
+      <div>
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>First Name:</strong> <span id="firstName"></span></p>
+        <p><strong>Middle Name:</strong> <span id="middleName"></span></p>
+        <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+        <p>
+          <strong>GitHub Profile:</strong>
+          <a id="github" href="" target="_blank"></a>
+        </p>
+        <!-- <p>
+          <strong>Profile Link:</strong>
+          <a id="profileLink" href="" target="_blank"></a>
+        </p> -->
+        <p>
+          <strong>LinkedIn Profile:</strong>
+          <a id="linkedin" href="" target="_blank"></a>
+        </p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+      </div>
+      <input type="button" id="logout" name="logout" value="Logout" />
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+      import {
+        getDatabase,
+        ref,
+        get,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCcpcpFvUGLoZI5R3s2kFEQMOwWQUsxoQc",
+        authDomain: "authentication-76738.firebaseapp.com",
+        databaseURL: "https://authentication-76738-default-rtdb.firebaseio.com",
+        projectId: "authentication-76738",
+        storageBucket: "authentication-76738.appspot.com",
+        messagingSenderId: "905237555297",
+        appId: "1:905237555297:web:81f3a5bdc04f12f3e32220",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const database = getDatabase(app);
+
+      // Function to display user data
+      const displayUserData = async (user) => {
+        if (user) {
+          const userRef = ref(database, "users/" + user.uid);
+          const snapshot = await get(userRef);
+          const userData = snapshot.val();
+
+          if (userData) {
+            document.getElementById("username").textContent =
+              userData.username || "";
+            document.getElementById("email").textContent = user.email || "";
+            document.getElementById("firstName").textContent =
+              userData.firstName || "";
+            document.getElementById("middleName").textContent =
+              userData.middleName || "";
+            document.getElementById("lastName").textContent =
+              userData.lastName || "";
+            document.getElementById("github").textContent =
+              userData.github || "";
+            document.getElementById("github").href = userData.github || "";
+            // document.getElementById("profileLink").textContent =
+            //   userData.profileLink || "";
+            // document.getElementById("profileLink").href =
+            //   userData.profileLink || "";
+            document.getElementById("linkedin").textContent =
+              userData.linkedin || "";
+            document.getElementById("linkedin").href = userData.linkedin || "";
+            document.getElementById("dob").textContent = userData.dob || "";
+          }
+        }
+      };
+
+      // Check if the user is authenticated
+      onAuthStateChanged(auth, (user) => {
+        displayUserData(user);
+      });
+
+      // Logout function
+      document.getElementById("logout").addEventListener("click", async (e) => {
+        try {
+          await signOut(auth);
+          //   alert("User logged out");
+          // Reload the page
+          location.reload();
+        } catch (error) {
+          const errorMessage = error.message;
+          alert(errorMessage);
+        }
+      });
+    </script>
+  </body>
+</html>
